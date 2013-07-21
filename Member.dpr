@@ -21,7 +21,8 @@ uses
   formEditBuilding in 'form\formEditBuilding.pas' {editBuildingForm},
   config in 'unit\config.pas',
   DBfunc in 'unit\DBfunc.pas' {$R *.res},
-  frmBuildList in 'form\frmBuildList.pas' {buildListForm};
+  frmBuildList in 'form\frmBuildList.pas' {buildListForm},
+  SQLite3 in 'unit\SQLite3.pas';
 
 {$R *.res}
 

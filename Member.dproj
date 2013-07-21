@@ -103,11 +103,11 @@
 				<Form>mainFrm</Form>
 			</DCCReference>
 			<DCCReference Include="core\CORLoggerLib.pas"/>
-			<DCCReference Include="сore\CORIniLib.pas"/>
+			<DCCReference Include="core\CORIniLib.pas"/>
 			<DCCReference Include="core\CORDialogLib.pas">
 				<Form>frmCORDialog</Form>
 			</DCCReference>
-			<DCCReference Include="сore\CORLogicLib.pas"/>
+			<DCCReference Include="core\CORLogicLib.pas"/>
 			<DCCReference Include="frame\frameObjects.pas">
 				<Form>objectsFrame</Form>
 				<DesignClass>TFrame</DesignClass>
@@ -149,6 +149,7 @@
 			<DCCReference Include="form\frmBuildList.pas">
 				<Form>buildListForm</Form>
 			</DCCReference>
+			<DCCReference Include="unit\SQLite3.pas"/>
 			<BuildConfiguration Include="Debug">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
