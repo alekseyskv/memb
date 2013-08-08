@@ -130,6 +130,7 @@ end;
 procedure TfrmCORRec.FormShow(Sender: TObject);
 begin
   sbrRec.Panels[0].Text := llCreateTime + ' ' + FormatDateTime('hh:nn:ss.zzz', Now - TimeCreate);
+  sbrRec.Panels[1].Text := llRecordIdent + ' ' + qRec.FieldByName('guid').AsString;
   LogDebug(ClassName, 'Form displayed');
 end;
 

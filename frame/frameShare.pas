@@ -8,7 +8,7 @@ uses
   cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxDBData, cxGridLevel, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
   cxGridCustomView, cxGrid, ExtCtrls, cxCalendar, cxCalc, Uni,
-  cxDBLookupComboBox;
+  cxDBLookupComboBox, Vcl.Menus;
 
 type
   TshareFrame = class(TFrame)
@@ -21,8 +21,6 @@ type
     mniAdd: TdxBarButton;
     mniEdit: TdxBarButton;
     mniDel: TdxBarButton;
-    dsList: TDataSource;
-    qList: TUniQuery;
     pnlList: TPanel;
     dbgList: TcxGrid;
     dbgListView: TcxGridDBTableView;
@@ -35,7 +33,14 @@ type
     dbgListViewshare: TcxGridDBColumn;
     dbgListViewarea: TcxGridDBColumn;
     dbgListViewshare_area: TcxGridDBColumn;
+    SharePopupMenu: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
     procedure PEvents(Sender: TObject);
+    procedure dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
     procedure ShareAdd;
     procedure ShareEdit;
@@ -48,7 +53,7 @@ type
 
 implementation
 
-uses dmCon, dmData, CORLoggerLib, formEditShare;
+uses dmCon, dmData, CORLoggerLib, formEditShare, formMain;
 
 {$R *.dfm}
 
@@ -63,6 +68,13 @@ end;
 procedure TshareFrame.BeforeDestruction;
 begin
   LogDebug(ClassName, 'Frame destroyed');
+end;
+
+procedure TshareFrame.dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+begin
+  ShareEdit;
 end;
 
 procedure TshareFrame.LoadData();

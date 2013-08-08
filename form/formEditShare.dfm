@@ -56,8 +56,8 @@ inherited editShareForm: TeditShareForm
   inherited sbrRec: TdxStatusBar
     Top = 225
     Width = 273
-    ExplicitTop = 209
-    ExplicitWidth = 317
+    ExplicitTop = 225
+    ExplicitWidth = 273
   end
   object objectCmb: TcxDBLookupComboBox [8]
     Left = 8
@@ -69,6 +69,8 @@ inherited editShareForm: TeditShareForm
       item
         FieldName = 'name'
       end>
+    Properties.ListOptions.GridLines = glNone
+    Properties.ListOptions.ShowHeader = False
     Properties.ListSource = dataDm.dsObjectCmbList
     TabOrder = 3
     Width = 257
@@ -83,6 +85,8 @@ inherited editShareForm: TeditShareForm
       item
         FieldName = 'name'
       end>
+    Properties.ListOptions.GridLines = glNone
+    Properties.ListOptions.ShowHeader = False
     Properties.ListSource = dataDm.dsOwnerCmbList
     TabOrder = 4
     Width = 257

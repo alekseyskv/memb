@@ -7,7 +7,8 @@ uses
   Dialogs, ActnList, dxBar, cxClasses, DB, MemDS, DBAccess, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxDBData, cxGridLevel, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGridCustomView, cxGrid, ExtCtrls, cxCalc, Grids, DBGrids, cxCalendar, Uni;
+  cxGridCustomView, cxGrid, ExtCtrls, cxCalc, Grids, DBGrids, cxCalendar, Uni,
+  Vcl.Menus;
 
 type
   TobjectsFrame = class(TFrame)
@@ -38,8 +39,15 @@ type
     actAdd: TAction;
     actEdit: TAction;
     actDel: TAction;
+    ObjectsPopupMenu: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
     procedure PEvents(Sender: TObject);
     procedure PScroll(DataSet: TDataSet);
+    procedure dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
     procedure ObjAdd;
     procedure ObjEdit;
@@ -53,7 +61,7 @@ type
 
 implementation
 
-uses CORLoggerLib, formEditObject, dmCon, dmData;
+uses CORLoggerLib, formEditObject, dmCon, dmData, formMain;
 
 {$R *.dfm}
 
@@ -67,6 +75,13 @@ end;
 procedure TobjectsFrame.BeforeDestruction;
 begin
   LogDebug(ClassName, 'Frame destroyed');
+end;
+
+procedure TobjectsFrame.dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+begin
+  ObjEdit;
 end;
 
 procedure TobjectsFrame.LoadData();

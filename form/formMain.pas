@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ActnList, dxBar, cxClasses, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, dxStatusBar, cxPC, DB, MemDS, DBAccess, dxBarExtItems,
-  cxPCdxBarPopupMenu, Uni;
+  cxPCdxBarPopupMenu, Uni, Vcl.ImgList, cxLocalization, cxImage, cxBarEditItem;
 
 type
   TGUIDs = array of String;
@@ -40,10 +40,15 @@ type
     qHousesguid: TWideStringField;
     qHousesname: TWideStringField;
     qHousesis_active: TBooleanField;
+    greyImgList: TcxImageList;
+    cxLocalizer: TcxLocalizer;
+    cxBarEditItem1: TcxBarEditItem;
+    cxBarEditItem2: TcxBarEditItem;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure PEvents(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure LoadLocalizer;
   private
     BuildingGUIDs: TGUIDs;
     procedure LoadBuildingComboBox;
@@ -78,7 +83,7 @@ begin
   mniDateOper.Date := Logic.DateOper;
   dataDm.loadData();
   LoadBuildingComboBox;
-
+  LoadLocalizer;
 
   objectsFrame := TobjectsFrame.Create(Self);
   objectsFrame.Parent := tshObjects;
@@ -88,6 +93,16 @@ begin
   shareFrame := TshareFrame.Create(Self);
   shareFrame.Parent := tshShares;
   LogDebug(ClassName, 'Form created');
+end;
+
+procedure TmainFrm.LoadLocalizer;
+begin
+  if FileExists(GetCurrentDir + '/Russian.lng') then
+  begin
+    cxLocalizer.LoadFromFile(GetCurrentDir + '/Russian.lng');
+    cxLocalizer.Active:=true;
+    cxLocalizer.Locale:=1049;
+  end;
 end;
 
 procedure TmainFrm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);

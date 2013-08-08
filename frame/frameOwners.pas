@@ -7,7 +7,8 @@ uses
   Dialogs, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData,
   cxFilter, cxData, cxDataStorage, cxEdit, DB, cxDBData, cxGridLevel, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxClasses, cxGridCustomView, cxGrid, ExtCtrls, MemDS,
-  DBAccess, dxBar, ActnList, cxCalendar, cxCalc, Uni, cxDBLookupComboBox;
+  DBAccess, dxBar, ActnList, cxCalendar, cxCalc, Uni, cxDBLookupComboBox,
+  Vcl.Menus;
 
 type
   TownersFrame = class(TFrame)
@@ -37,8 +38,15 @@ type
     dbgDataViewfinish_date: TcxGridDBColumn;
     dbgDataViewshare: TcxGridDBColumn;
     dbgDataViewshare_area: TcxGridDBColumn;
+    OwnersPopupMenu: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
     procedure PEvents(Sender: TObject);
     procedure PScroll(DataSet: TDataSet);
+    procedure dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
     procedure OwnerAdd;
     procedure OwnerEdit;
@@ -52,7 +60,7 @@ type
 
 implementation
 
-uses dmCon, dmData, CORLoggerLib, formEditOwner;
+uses dmCon, dmData, CORLoggerLib, formEditOwner, formMain;
 
 {$R *.dfm}
 
@@ -67,6 +75,13 @@ end;
 procedure TownersFrame.BeforeDestruction;
 begin
   LogDebug(ClassName, 'Frame destroyed');
+end;
+
+procedure TownersFrame.dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+begin
+  OwnerEdit;
 end;
 
 procedure TownersFrame.LoadData();

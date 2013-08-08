@@ -22,7 +22,9 @@ uses
   config in 'unit\config.pas',
   DBfunc in 'unit\DBfunc.pas' {$R *.res},
   frmBuildList in 'form\frmBuildList.pas' {buildListForm},
-  SQLite3 in 'unit\SQLite3.pas';
+  SQLite3 in 'unit\SQLite3.pas',
+  formAbout in 'form\formAbout.pas' {aboutFrm},
+  common in 'unit\common.pas';
 
 {$R *.res}
 
@@ -35,5 +37,6 @@ begin
   Application.CreateForm(TdmMEM, dmMEM);
   Application.CreateForm(TmainFrm, mainFrm);
   Application.CreateForm(TbuildListForm, buildListForm);
+  Application.CreateForm(TaboutFrm, aboutFrm);
   Application.Run;
 end.

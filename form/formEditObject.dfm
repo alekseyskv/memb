@@ -66,7 +66,7 @@ inherited editObjectForm: TeditObjectForm
     Top = 401
     Width = 385
     ExplicitTop = 401
-    ExplicitWidth = 551
+    ExplicitWidth = 385
   end
   object dbgList: TcxGrid [9]
     Left = 8
@@ -91,9 +91,11 @@ inherited editObjectForm: TeditObjectForm
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
       object dbgListViewbegin_date: TcxGridDBColumn
+        Caption = #1044#1072#1090#1072
         DataBinding.FieldName = 'begin_date'
       end
       object dbgListViewarea: TcxGridDBColumn
+        Caption = #1055#1083#1086#1097#1072#1076#1100
         DataBinding.FieldName = 'area'
       end
       object dbgListViewguid: TcxGridDBColumn

@@ -1,7 +1,7 @@
 object ownersFrame: TownersFrame
   Left = 0
   Top = 0
-  Width = 950
+  Width = 995
   Height = 304
   Align = alClient
   TabOrder = 0
@@ -25,7 +25,9 @@ object ownersFrame: TownersFrame
       LookAndFeel.Kind = lfStandard
       LookAndFeel.NativeStyle = True
       object dbgListView: TcxGridDBTableView
+        PopupMenu = OwnersPopupMenu
         OnDblClick = PEvents
+        OnCellDblClick = dbgListViewCellDblClick
         DataController.DataSource = dataDm.dsOwners
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <>
@@ -44,6 +46,7 @@ object ownersFrame: TownersFrame
           Width = 206
         end
         object dbgListViewname: TcxGridDBColumn
+          Caption = #1057#1086#1073#1089#1090#1074#1077#1085#1085#1080#1082
           DataBinding.FieldName = 'name'
           Width = 287
         end
@@ -56,23 +59,23 @@ object ownersFrame: TownersFrame
   object pnlOwners: TPanel
     Left = 501
     Top = 28
-    Width = 449
+    Width = 494
     Height = 276
     Align = alClient
     BorderWidth = 2
     Caption = ' '
     TabOrder = 5
-    ExplicitWidth = 443
+    ExplicitWidth = 449
     object dbgData: TcxGrid
       Left = 3
       Top = 3
-      Width = 443
+      Width = 488
       Height = 270
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfStandard
       LookAndFeel.NativeStyle = True
-      ExplicitWidth = 437
+      ExplicitWidth = 443
       object dbgDataView: TcxGridDBTableView
         OnDblClick = PEvents
         DataController.DataSource = dataDm.dsOwnerShare
@@ -93,6 +96,7 @@ object ownersFrame: TownersFrame
           Width = 44
         end
         object dbgDataViewobj_guid: TcxGridDBColumn
+          Caption = #1054#1073#1098#1077#1082#1090
           DataBinding.FieldName = 'obj_guid'
           PropertiesClassName = 'TcxLookupComboBoxProperties'
           Properties.KeyFieldNames = 'guid'
@@ -109,18 +113,22 @@ object ownersFrame: TownersFrame
           Width = 43
         end
         object dbgDataViewstart_date: TcxGridDBColumn
+          Caption = #1053#1072#1095#1072#1083#1100#1085#1072#1103' '#1076#1072#1090#1072
           DataBinding.FieldName = 'start_date'
           Width = 47
         end
         object dbgDataViewfinish_date: TcxGridDBColumn
+          Caption = #1050#1086#1085#1077#1095#1085#1072#1103' '#1076#1072#1090#1072
           DataBinding.FieldName = 'finish_date'
           Width = 75
         end
         object dbgDataViewshare: TcxGridDBColumn
+          Caption = '%'
           DataBinding.FieldName = 'share'
           Width = 58
         end
         object dbgDataViewshare_area: TcxGridDBColumn
+          Caption = #1055#1083#1086#1097#1072#1076#1100
           DataBinding.FieldName = 'share_area'
           Width = 41
         end
@@ -131,18 +139,22 @@ object ownersFrame: TownersFrame
     end
   end
   object aclObjects: TActionList
+    Images = mainFrm.greyImgList
     Left = 68
     Top = 196
     object actAdd: TAction
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      ImageIndex = 2
       OnExecute = PEvents
     end
     object actEdit: TAction
       Caption = #1048#1079#1084#1077#1085#1080#1090#1100
+      ImageIndex = 16
       OnExecute = PEvents
     end
     object actDel: TAction
       Caption = #1059#1076#1072#1083#1080#1090#1100
+      ImageIndex = 15
       OnExecute = PEvents
     end
   end
@@ -158,6 +170,7 @@ object ownersFrame: TownersFrame
       2)
     Categories.Visibles = (
       True)
+    ImageOptions.Images = mainFrm.greyImgList
     PopupMenuLinks = <>
     UseSystemFont = True
     Left = 136
@@ -201,14 +214,34 @@ object ownersFrame: TownersFrame
     object mniAdd: TdxBarButton
       Action = actAdd
       Category = 0
+      PaintStyle = psCaptionGlyph
     end
     object mniEdit: TdxBarButton
       Action = actEdit
       Category = 0
+      PaintStyle = psCaptionGlyph
     end
     object mniDel: TdxBarButton
       Action = actDel
       Category = 0
+      PaintStyle = psCaptionGlyph
+    end
+  end
+  object OwnersPopupMenu: TPopupMenu
+    Images = mainFrm.greyImgList
+    Left = 72
+    Top = 112
+    object N1: TMenuItem
+      Action = actAdd
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1089#1086#1073#1089#1090#1074#1077#1085#1085#1080#1082#1072
+    end
+    object N2: TMenuItem
+      Action = actEdit
+      Caption = #1048#1079#1084#1077#1085#1080#1090#1100' '#1089#1086#1073#1089#1090#1074#1077#1085#1085#1080#1082#1072
+    end
+    object N3: TMenuItem
+      Action = actDel
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1089#1086#1073#1089#1090#1074#1077#1085#1085#1080#1082#1072
     end
   end
 end

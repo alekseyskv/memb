@@ -1,7 +1,7 @@
 object objectsFrame: TobjectsFrame
   Left = 0
   Top = 0
-  Width = 1031
+  Width = 1003
   Height = 304
   Align = alClient
   TabOrder = 0
@@ -25,7 +25,9 @@ object objectsFrame: TobjectsFrame
       LookAndFeel.Kind = lfStandard
       LookAndFeel.NativeStyle = True
       object dbgListView: TcxGridDBTableView
+        PopupMenu = ObjectsPopupMenu
         OnDblClick = PEvents
+        OnCellDblClick = dbgListViewCellDblClick
         DataController.DataSource = dataDm.dsObjects
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <>
@@ -39,18 +41,22 @@ object objectsFrame: TobjectsFrame
         OptionsView.ColumnAutoWidth = True
         OptionsView.GroupByBox = False
         object dbgListViewname: TcxGridDBColumn
+          Caption = #1054#1073#1098#1077#1082#1090
           DataBinding.FieldName = 'name'
           Width = 176
         end
         object dbgListViewstart_date: TcxGridDBColumn
+          Caption = #1053#1072#1095#1072#1083#1100#1085#1072#1103' '#1076#1072#1090#1072
           DataBinding.FieldName = 'start_date'
           Width = 121
         end
         object dbgListViewfinish_date: TcxGridDBColumn
+          Caption = #1050#1086#1085#1077#1095#1085#1072#1103' '#1076#1072#1090#1072
           DataBinding.FieldName = 'finish_date'
           Width = 127
         end
         object dbgListViewarea: TcxGridDBColumn
+          Caption = #1055#1083#1086#1097#1072#1076#1100
           DataBinding.FieldName = 'area'
           Width = 69
         end
@@ -63,23 +69,23 @@ object objectsFrame: TobjectsFrame
   object pnlOwners: TPanel
     Left = 501
     Top = 28
-    Width = 530
+    Width = 502
     Height = 276
     Align = alClient
     BorderWidth = 2
     Caption = ' '
     TabOrder = 5
-    ExplicitWidth = 454
+    ExplicitWidth = 418
     object dbgData: TcxGrid
       Left = 3
       Top = 3
-      Width = 524
+      Width = 496
       Height = 270
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfStandard
       LookAndFeel.NativeStyle = True
-      ExplicitWidth = 448
+      ExplicitWidth = 412
       object dbgDataView: TcxGridDBTableView
         OnDblClick = PEvents
         DataController.DataSource = dataDm.dsObjectOwners
@@ -100,22 +106,27 @@ object objectsFrame: TobjectsFrame
           Width = 79
         end
         object dbgDataViewstart_date: TcxGridDBColumn
+          Caption = #1053#1072#1095#1072#1083#1100#1085#1072#1103' '#1076#1072#1090#1072
           DataBinding.FieldName = 'start_date'
           Width = 117
         end
         object dbgDataViewfinish_date: TcxGridDBColumn
+          Caption = #1050#1086#1085#1077#1095#1085#1072#1103' '#1076#1072#1090#1072
           DataBinding.FieldName = 'finish_date'
           Width = 129
         end
         object dbgDataViewshare: TcxGridDBColumn
+          Caption = '%'
           DataBinding.FieldName = 'share'
           Width = 60
         end
         object dbgDataViewowner_name: TcxGridDBColumn
+          Caption = #1057#1086#1073#1089#1090#1074#1077#1085#1085#1080#1082
           DataBinding.FieldName = 'owner_name'
           Width = 155
         end
         object dbgDataViewshare_area: TcxGridDBColumn
+          Caption = #1055#1083#1086#1097#1072#1076#1100
           DataBinding.FieldName = 'share_area'
           Width = 61
         end
@@ -137,10 +148,11 @@ object objectsFrame: TobjectsFrame
       2)
     Categories.Visibles = (
       True)
+    ImageOptions.Images = mainFrm.greyImgList
     PopupMenuLinks = <>
     UseSystemFont = True
-    Left = 136
-    Top = 196
+    Left = 72
+    Top = 76
     DockControlHeights = (
       0
       0
@@ -180,30 +192,54 @@ object objectsFrame: TobjectsFrame
     object mniAdd: TdxBarButton
       Action = actAdd
       Category = 0
+      PaintStyle = psCaptionGlyph
     end
     object mniEdit: TdxBarButton
       Action = actEdit
       Category = 0
+      PaintStyle = psCaptionGlyph
     end
     object mniDel: TdxBarButton
       Action = actDel
       Category = 0
+      PaintStyle = psCaptionGlyph
     end
   end
   object aclObject: TActionList
+    Images = mainFrm.greyImgList
     Left = 68
-    Top = 196
+    Top = 180
     object actAdd: TAction
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      ImageIndex = 2
       OnExecute = PEvents
     end
     object actEdit: TAction
       Caption = #1048#1079#1084#1077#1085#1080#1090#1100
+      ImageIndex = 16
       OnExecute = PEvents
     end
     object actDel: TAction
       Caption = #1059#1076#1072#1083#1080#1090#1100
+      ImageIndex = 15
       OnExecute = PEvents
+    end
+  end
+  object ObjectsPopupMenu: TPopupMenu
+    Images = mainFrm.greyImgList
+    Left = 72
+    Top = 128
+    object N1: TMenuItem
+      Action = actAdd
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1086#1073#1098#1077#1082#1090
+    end
+    object N2: TMenuItem
+      Action = actEdit
+      Caption = #1048#1079#1084#1077#1085#1080#1090#1100' '#1086#1073#1098#1077#1082#1090
+    end
+    object N3: TMenuItem
+      Action = actDel
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1086#1073#1098#1077#1082#1090
     end
   end
 end
