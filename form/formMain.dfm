@@ -3,7 +3,7 @@ object mainFrm: TmainFrm
   Top = 0
   Caption = #1056#1077#1077#1089#1090#1088' '#1095#1083#1077#1085#1086#1074' '#1058#1057#1046
   ClientHeight = 670
-  ClientWidth = 1186
+  ClientWidth = 1110
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,45 +20,65 @@ object mainFrm: TmainFrm
   object pclMain: TcxPageControl
     Left = 0
     Top = 75
-    Width = 1186
+    Width = 1110
     Height = 575
     Align = alClient
     TabOrder = 4
-    Properties.ActivePage = tshShares
+    Properties.ActivePage = tshObjects
+    ExplicitWidth = 1186
     ClientRectBottom = 571
     ClientRectLeft = 2
-    ClientRectRight = 1182
+    ClientRectRight = 1106
     ClientRectTop = 22
     object tshObjects: TcxTabSheet
       Caption = #1054#1073#1098#1077#1082#1090#1099
       ImageIndex = 0
+      ExplicitWidth = 1180
     end
     object tshOwners: TcxTabSheet
       Caption = #1057#1086#1073#1089#1090#1074#1077#1085#1085#1080#1082#1080
       ImageIndex = 1
+      ExplicitWidth = 1180
     end
     object tshShares: TcxTabSheet
       Caption = #1042#1083#1072#1076#1077#1085#1080#1077' '#1089#1086#1073#1089#1090#1074#1077#1085#1085#1086#1089#1090#1100#1102
       ImageIndex = 2
+      ExplicitWidth = 1180
     end
   end
   object sbrMain: TdxStatusBar
     Left = 0
     Top = 650
-    Width = 1186
+    Width = 1110
     Height = 20
-    Panels = <>
+    Images = greyImgList
+    Panels = <
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        PanelStyle.ImageIndex = 35
+        MinWidth = 250
+        Text = #1054#1073#1098#1077#1082#1090':'
+        Width = 250
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        PanelStyle.ImageIndex = 10
+        Text = #1042#1077#1088#1089#1080#1103':'
+      end>
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    ExplicitWidth = 1186
   end
   object aclMain: TActionList
+    Images = greyImgList
     Left = 360
     Top = 220
     object actCORExit: TAction
       Caption = #1042#1099#1093#1086#1076
+      ImageIndex = 12
       OnExecute = PEvents
     end
     object actVIWObjects: TAction
@@ -78,7 +98,13 @@ object mainFrm: TmainFrm
       OnExecute = PEvents
     end
     object actLIBHouses: TAction
-      Caption = #1044#1086#1084#1072'...'
+      Caption = #1044#1086#1084#1072
+      ImageIndex = 37
+      OnExecute = PEvents
+    end
+    object actCORAbout: TAction
+      Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+      ImageIndex = 10
       OnExecute = PEvents
     end
   end
@@ -137,6 +163,10 @@ object mainFrm: TmainFrm
         item
           Visible = True
           ItemName = 'mniLIBLibrary'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarSubItem1'
         end>
       MultiLine = True
       OneOnRow = True
@@ -204,6 +234,35 @@ object mainFrm: TmainFrm
       UseRestSpace = True
       Visible = True
       WholeRow = True
+    end
+    object cxBarEditItem1: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 0
+      Hint = 'New Item'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxImageProperties'
+    end
+    object cxBarEditItem2: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 0
+      Hint = 'New Item'
+      Visible = ivAlways
+      ImageIndex = 35
+      PropertiesClassName = 'TcxImageProperties'
+    end
+    object dxBarSubItem1: TdxBarSubItem
+      Caption = '?'
+      Category = 0
+      Visible = ivAlways
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'mniCORAbout'
+        end>
+    end
+    object mniCORAbout: TdxBarButton
+      Action = actCORAbout
+      Category = 0
     end
     object mniCORFile: TdxBarSubItem
       Caption = #1060#1072#1081#1083
@@ -307,21 +366,6 @@ object mainFrm: TmainFrm
     object mniLIBHouses: TdxBarButton
       Action = actLIBHouses
       Category = 3
-    end
-    object cxBarEditItem1: TcxBarEditItem
-      Caption = 'New Item'
-      Category = 0
-      Hint = 'New Item'
-      Visible = ivAlways
-      PropertiesClassName = 'TcxImageProperties'
-    end
-    object cxBarEditItem2: TcxBarEditItem
-      Caption = 'New Item'
-      Category = 0
-      Hint = 'New Item'
-      Visible = ivAlways
-      ImageIndex = 35
-      PropertiesClassName = 'TcxImageProperties'
     end
   end
   object qHouses: TUniQuery
@@ -1722,6 +1766,43 @@ object mainFrm: TmainFrm
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000}
+      end
+      item
+        Image.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000004040404040404040404040400000000000000000000000004040
+          4040404040404040404000000000000000000000000000000000000000000000
+          000000000000333333FF333333FF333333FF0000000000000000000000003333
+          33FF333333FF333333FF00000000000000000000000000000000000000000000
+          000000000000333333FF333333FF333333FF0000000000000000000000003333
+          33FF333333FF333333FF00000000000000000000000000000000000000000000
+          000000000000333333FF333333FF333333FF0000000000000000000000003333
+          33FF333333FF333333FF00000000000000000000000000000000000000000000
+          000000000000333333FF333333FF333333FF4040404040404040404040403333
+          33FF333333FF333333FF00000000000000000000000000000000000000000000
+          000000000000333333FF333333FF333333FF333333FF333333FF333333FF3333
+          33FF333333FF333333FF00000000000000000000000000000000000000002828
+          282840404040333333FF333333FF333333FF333333FF333333FF333333FF3333
+          33FF333333FF333333FF40404040282828280000000000000000000000001010
+          109F292929FF333333FF333333FF333333FF333333FF333333FF333333FF3333
+          33FF333333FF333333FF292929FF1010109F0000000000000000000000000000
+          00001010109F292929FF333333FF333333FF333333FF333333FF333333FF3333
+          33FF333333FF292929FF1010109F000000000000000000000000000000000000
+          0000000000001010109F292929FF333333FF333333FF333333FF333333FF3333
+          33FF292929FF1010109F00000000000000000000000000000000000000000000
+          000000000000000000001010109F292929FF333333FF333333FF333333FF2929
+          29FF1010109F0000000000000000000000000000000000000000000000000000
+          00000000000000000000000000001010109F292929FF333333FF292929FF1010
+          109F000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000001010109F232323FF1010109F0000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000000909095F000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}

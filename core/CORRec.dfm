@@ -4,7 +4,7 @@ object frmCORRec: TfrmCORRec
   BorderStyle = bsDialog
   Caption = 'Record'
   ClientHeight = 155
-  ClientWidth = 297
+  ClientWidth = 304
   Color = clBtnFace
   Font.Charset = RUSSIAN_CHARSET
   Font.Color = clWindowText
@@ -41,7 +41,7 @@ object frmCORRec: TfrmCORRec
   object sbrRec: TdxStatusBar
     Left = 0
     Top = 142
-    Width = 297
+    Width = 304
     Height = 13
     Panels = <
       item
@@ -63,6 +63,7 @@ object frmCORRec: TfrmCORRec
     Font.Height = -8
     Font.Name = 'Tahoma'
     Font.Style = []
+    ExplicitWidth = 297
   end
   object qRec: TUniQuery
     DataTypeMap = <>

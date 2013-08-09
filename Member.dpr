@@ -21,7 +21,7 @@ uses
   formEditBuilding in 'form\formEditBuilding.pas' {editBuildingForm},
   config in 'unit\config.pas',
   DBfunc in 'unit\DBfunc.pas' {$R *.res},
-  frmBuildList in 'form\frmBuildList.pas' {buildListForm},
+  formBuildList in 'form\formBuildList.pas' {buildListForm},
   SQLite3 in 'unit\SQLite3.pas',
   formAbout in 'form\formAbout.pas' {aboutFrm},
   common in 'unit\common.pas';
@@ -36,7 +36,5 @@ begin
   Application.CreateForm(TdataDm, dataDm);
   Application.CreateForm(TdmMEM, dmMEM);
   Application.CreateForm(TmainFrm, mainFrm);
-  Application.CreateForm(TbuildListForm, buildListForm);
-  Application.CreateForm(TaboutFrm, aboutFrm);
   Application.Run;
 end.

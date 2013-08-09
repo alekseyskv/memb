@@ -3,7 +3,7 @@ unit config;
 interface
 
 uses
-  SysUtils, IniFiles, {Common,} SHFolder;
+  SysUtils, IniFiles, Common, SHFolder;
 
 type
   CurrentUser = record
@@ -62,7 +62,7 @@ type
    procedure saveIniLastLoggedUser();
    function readRegKey: string;
    procedure saveRegKey(key: string);
-//   procedure setSpecialPath;
+   procedure setSpecialPath;
 
 var
   appDataPath: string;
@@ -73,9 +73,9 @@ var
   IsRegistered: boolean;
 
 const
-  IniFile = 'LawMatic.ini';
+  IniFile = 'Member.ini';
   CompanyName = 'Legal Research Laboratory';
-  ProgramName = 'LawMatic B1';
+  ProgramName = 'Реестр членов ТСЖ';
 
 implementation
 
@@ -109,7 +109,7 @@ begin
   SettingsIni.ServerLogin := iniSettings.ReadString('system', 'ServerLogin', '');
   SettingsIni.ServerPassword := iniSettings.ReadString('system', 'ServerPassword', '');
   SettingsIni.SynchLogShow :=  iniSettings.ReadBool('system', 'SynchLogShow', false);
-  //SettingsIni.WorkPath := iniSettings.ReadString('system', 'WorkPath', TCommon.GetSpecialFolderPath(CSIDL_PERSONAL)); // "Мои документы" по умолчанию
+  SettingsIni.WorkPath := iniSettings.ReadString('system', 'WorkPath', TCommon.GetSpecialFolderPath(CSIDL_PERSONAL)); // "Мои документы" по умолчанию
   SettingsIni.TotalCmdPath := iniSettings.ReadString('system', 'TotalCmdPath', '');
 
   iniSettings.Free;
@@ -171,7 +171,7 @@ begin
   ini.Free;
 end;
 
-{
+
 procedure setSpecialPath;
 begin
   executedActsPath := TCommon.GetSpecialFolderPath(CSIDL_PERSONAL)+'\'+ProgramName+'\';
@@ -179,6 +179,6 @@ begin
 
   appDataPath := TCommon.GetSpecialFolderPath(CSIDL_APPDATA)+'\'+ProgramName+'\';
   if not DirectoryExists(appDataPath) then ForceDirectories(appDataPath);
-end;}
+end;
 
 end.

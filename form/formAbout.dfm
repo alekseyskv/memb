@@ -140,7 +140,6 @@ object aboutFrm: TaboutFrm
     Caption = #1054#1050
     ModalResult = 2
     TabOrder = 0
-    ExplicitTop = 113
   end
   object Panel1: TPanel
     Left = 8
@@ -152,7 +151,6 @@ object aboutFrm: TaboutFrm
     Constraints.MinHeight = 2
     ShowCaption = False
     TabOrder = 1
-    ExplicitTop = 105
   end
   object versLbl: TcxLabel
     Left = 8

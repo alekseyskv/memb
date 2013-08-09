@@ -138,7 +138,8 @@ begin
   end;
 
   if (Sender as TAction) = actDelete
-  then begin
+  then
+  begin
     if not (dbgListView.Controller.FocusedRowIndex < 0) then
     begin
       if MBox('Удалить запись "' + qData.FieldByName('name').AsString + '"?', '', mtConfirmation) = mrYes then

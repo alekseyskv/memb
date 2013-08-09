@@ -28,6 +28,8 @@ type
 var
   aboutFrm: TaboutFrm;
 
+  procedure ShowAboutForm();
+
 implementation
 
 uses
@@ -42,6 +44,16 @@ begin
   versLbl.Caption := 'Версия: ' + TCommon.GetFileVersion(Application.ExeName);
   companyLbl.Caption := '© 2013 ' + CompanyName;
   urlLbl.Caption := 'www.lawmatic.ru';
+end;
+
+procedure ShowAboutForm();
+begin
+  aboutFrm := TaboutFrm.Create(nil);
+  try
+    aboutFrm.ShowModal;
+  finally
+    aboutFrm.Free;
+  end;
 end;
 
 procedure TaboutFrm.urlLblClick(Sender: TObject);

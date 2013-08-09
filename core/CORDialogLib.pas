@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ImgList, ExtCtrls, StdCtrls, Buttons;
+  Dialogs, ImgList, ExtCtrls, StdCtrls, Buttons, cxGraphics;
 
 type
   TRecAction = (reaInsert, reaChild, reaEdit, reaView, reaDelete, reaClone);
@@ -36,7 +36,8 @@ type
     imgMain: TImage;
     lblEvent: TLabel;
     lblText: TLabel;
-    imlImages: TImageList;
+    imlImages1: TImageList;
+    imlImages: TcxImageList;
     procedure ExpandInfo(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private

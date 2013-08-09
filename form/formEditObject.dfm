@@ -77,17 +77,13 @@ inherited editObjectForm: TeditObjectForm
     LookAndFeel.Kind = lfStandard
     LookAndFeel.NativeStyle = True
     object dbgListView: TcxGridDBTableView
+      PopupMenu = SquarePopupMenu
       OnDblClick = PEvents
       DataController.DataSource = dsAreas
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
-      OptionsData.CancelOnExit = False
-      OptionsData.Deleting = False
       OptionsData.DeletingConfirmation = False
-      OptionsData.Editing = False
-      OptionsData.Inserting = False
-      OptionsSelection.CellSelect = False
       OptionsView.ColumnAutoWidth = True
       OptionsView.GroupByBox = False
       object dbgListViewbegin_date: TcxGridDBColumn
@@ -125,7 +121,6 @@ inherited editObjectForm: TeditObjectForm
       end>
     Properties.ListOptions.GridLines = glNone
     Properties.ListOptions.ShowHeader = False
-    Properties.ListSource = dataDm.dsObjectTypes
     TabOrder = 4
     Width = 145
   end
@@ -208,6 +203,7 @@ inherited editObjectForm: TeditObjectForm
     MasterSource = dsRec
     MasterFields = 'guid'
     DetailFields = 'object_guid'
+    AfterInsert = qAreasAfterInsert
     Left = 28
     Top = 340
     ParamData = <
@@ -232,7 +228,19 @@ inherited editObjectForm: TeditObjectForm
   end
   object dsAreas: TUniDataSource
     DataSet = qAreas
-    Left = 80
-    Top = 344
+    Left = 72
+    Top = 336
+  end
+  object SquarePopupMenu: TPopupMenu
+    Left = 72
+    Top = 264
+    object addShare: TMenuItem
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      OnClick = PEvents
+    end
+    object delShare: TMenuItem
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      OnClick = PEvents
+    end
   end
 end

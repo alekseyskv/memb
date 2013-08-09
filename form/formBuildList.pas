@@ -1,4 +1,4 @@
-unit frmBuildList;
+unit formBuildList;
 
 interface
 
@@ -22,6 +22,9 @@ type
     dbgListVieworganization_name: TcxGridDBColumn;
     qDataname: TWideStringField;
     procedure PEvents(Sender: TObject);
+    procedure dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
     { Private declarations }
   public
@@ -49,6 +52,18 @@ begin
   finally
     buildListForm.Free;
   end;
+end;
+
+procedure TbuildListForm.dbgListViewCellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+var
+  actView: TAction;
+  NGUID: String;
+begin
+  NGUID := qData.FieldByName('GUID').AsString;
+  if buildingEdit(NGUID) = mrOk
+  then LoadData();
 end;
 
 procedure TbuildListForm.PEvents(Sender: TObject);

@@ -146,7 +146,7 @@
 			<DCCReference Include="unit\DBfunc.pas">
 				<Form>$R *.res</Form>
 			</DCCReference>
-			<DCCReference Include="form\frmBuildList.pas">
+			<DCCReference Include="form\formBuildList.pas">
 				<Form>buildListForm</Form>
 			</DCCReference>
 			<DCCReference Include="unit\SQLite3.pas"/>

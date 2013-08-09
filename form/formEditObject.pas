@@ -10,10 +10,9 @@ uses
   cxFilter, cxData, cxDataStorage, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxmdaset, cxCalendar, cxCalc,
   ActnList, dxBar, cxDropDownEdit, Uni, cxDBEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxMemo;
+  cxDBLookupComboBox, cxMemo, Vcl.Menus;
 
 type
-  TIds = array of Integer;
   TeditObjectForm = class(TfrmCORRec)
     lblName: TLabel;
     Label1: TLabel;
@@ -46,8 +45,13 @@ type
     dbgListViewarea: TcxGridDBColumn;
     dbgListViewguid: TcxGridDBColumn;
     dbgListViewobject_guid: TcxGridDBColumn;
+    SquarePopupMenu: TPopupMenu;
+    addShare: TMenuItem;
+    delShare: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure qRecAfterInsert(DataSet: TDataSet);
+    procedure qAreasAfterInsert(DataSet: TDataSet);
+    procedure PEvents(Sender: TObject);
   private
     procedure LoadObjects;
     procedure LoadAreas;
@@ -65,7 +69,7 @@ function objectDelete(AGUID: String): Integer;
 
 implementation
 
-uses CORLoggerLib, CORLogicLib, CORDialogLib, dmCon, dmData, MEMDataModule;
+uses CORLoggerLib, CORLogicLib, CORDialogLib, dmCon, dmData, MEMDataModule, Common;
 
 {$R *.dfm}
 
@@ -154,6 +158,31 @@ begin
     end;
   end;
   LogDebug(ClassName, '[LoadObjects] Finish');
+end;
+
+procedure TeditObjectForm.PEvents(Sender: TObject);
+begin
+  inherited;
+  if (Sender is TMenuItem)
+  then begin
+    if (Sender as TMenuItem) = addShare
+    then qAreas.Insert;
+    if (Sender as TMenuItem) = delShare
+    then
+    begin
+      if not (dbgListView.Controller.FocusedRowIndex < 0) then
+      begin
+        if MBox('Удалить запись?', '', mtConfirmation) = mrYes then
+          dbgListView.Controller.DeleteSelection;
+      end;
+    end;
+  end;
+end;
+
+procedure TeditObjectForm.qAreasAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  DataSet.FieldByName('guid').AsString := TCommon.GenerateGuid;
 end;
 
 procedure TeditObjectForm.qRecAfterInsert(DataSet: TDataSet);

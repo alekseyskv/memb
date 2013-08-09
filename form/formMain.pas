@@ -44,6 +44,9 @@ type
     cxLocalizer: TcxLocalizer;
     cxBarEditItem1: TcxBarEditItem;
     cxBarEditItem2: TcxBarEditItem;
+    dxBarSubItem1: TdxBarSubItem;
+    mniCORAbout: TdxBarButton;
+    actCORAbout: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure PEvents(Sender: TObject);
@@ -62,7 +65,7 @@ var
 implementation
 
 uses CORLoggerLib, dmCon, CORDialogLib, frameObjects, frameOwners, frameShare,
-  CORLogicLib, dmData, frmBuildList;
+  CORLogicLib, dmData, formBuildList, formAbout, common;
 
 var
   objectsFrame: TobjectsFrame;
@@ -84,6 +87,8 @@ begin
   dataDm.loadData();
   LoadBuildingComboBox;
   LoadLocalizer;
+
+  sbrMain.Panels.Items[1].Text := 'Версия: ' + TCommon.GetFileVersion(Application.ExeName);
 
   objectsFrame := TobjectsFrame.Create(Self);
   objectsFrame.Parent := tshObjects;
@@ -166,7 +171,8 @@ begin
       if (0 <= buildingCmb.ItemIndex) and (buildingCmb.ItemIndex < Length(BuildingGUIDs))
       then begin
         Logic.HouseGUID := BuildingGUIDs[buildingCmb.ItemIndex];
-        Caption := APPLICATION_CAPTION + ' [' + buildingCmb.Text + ']';
+        //Caption := APPLICATION_CAPTION + ' [' + buildingCmb.Text + ']';
+        sbrMain.Panels.Items[0].Text := 'Объект: ' + buildingCmb.Text;
 
         dataDm.qObjects.Close;
         dataDm.qObjects.ParamByName('BGUID').AsString := BuildingGUIDs[buildingCmb.ItemIndex];
@@ -215,6 +221,9 @@ ORDER BY w.name
       shareFrame.LoadData();
       pclMain.ActivePage := tshShares;
     end;
+
+    if (Sender as TAction) = actCORAbout
+    then ShowAboutForm;
   end;
 end;
 
