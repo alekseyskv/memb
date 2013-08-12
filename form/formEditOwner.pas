@@ -19,6 +19,7 @@ type
   public
     procedure LoadedRec; override;
     procedure SaveRec; override;
+    function checkInputData(): boolean; override;
   end;
 
 var
@@ -119,6 +120,16 @@ begin
     else ModalResult := mrOk;
   end;}
   LogDebug(ClassName, '[SaveRec] Finish');
+end;
+
+function TeditOwnerForm.checkInputData(): boolean;
+begin
+  Inherited;
+  if (ownerNameTextEdt.Text = '') then
+  begin
+    MBox('Обязательны для заполнения:' + #13 + '- Название', CoreErrorText, mtInformation);
+    Result:= false;
+  end;
 end;
 
 end.

@@ -39,6 +39,7 @@ type
     procedure LoadRec;
     procedure LoadedRec; virtual;
     procedure SaveRec; virtual;
+    function checkInputData: boolean; virtual;
   end;
 
 implementation
@@ -173,7 +174,7 @@ begin
   if (Sender is TBitBtn)
   then begin
     LogDebug(ClassName, '[PEvents] Sender: ' + (Sender as TBitBtn).Name);
-    if (Sender as TBitBtn) = btnOk
+    if ((Sender as TBitBtn) = btnOk) and (checkInputData())
     then ModalResult := mrOk;
     if (Sender as TBitBtn) = btnCancel
     then ModalResult := mrCancel;
@@ -188,6 +189,12 @@ end;
 procedure TfrmCORRec.SaveRec;
 begin
   // no actions
+end;
+
+function TfrmCORRec.checkInputData():boolean;
+begin
+  // no actions
+  Result := true;
 end;
 
 end.

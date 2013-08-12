@@ -35,6 +35,7 @@ type
     procedure LoadComboItems;
     procedure LoadedRec; override;
     procedure SaveRec; override;
+    function checkInputData(): boolean; override;
   end;
 
 var
@@ -148,6 +149,16 @@ begin
   LogDebug(ClassName, '[SaveRec] Start');
   ModalResult := mrOk;
   LogDebug(ClassName, '[SaveRec] Finish');
+end;
+
+function TeditShareForm.checkInputData(): boolean;
+begin
+  Inherited;
+  if (objectCmb.Text = '') or (ownerCmb.Text = '') or (shareCalcEdt.Text = '') then
+  begin
+    MBox('Обязательны для заполнения:' + #13 + '- Объект' + #13 + '- Владелец' + #13 + '- Доля', CoreErrorText, mtInformation);
+    Result:= false;
+  end;
 end;
 
 end.

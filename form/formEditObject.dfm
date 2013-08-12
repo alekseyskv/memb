@@ -91,7 +91,7 @@ inherited editObjectForm: TeditObjectForm
         DataBinding.FieldName = 'begin_date'
       end
       object dbgListViewarea: TcxGridDBColumn
-        Caption = #1055#1083#1086#1097#1072#1076#1100
+        Caption = #1055#1083#1086#1097#1072#1076#1100' ('#1082#1074'. '#1084'.)'
         DataBinding.FieldName = 'area'
       end
       object dbgListViewguid: TcxGridDBColumn
@@ -121,6 +121,7 @@ inherited editObjectForm: TeditObjectForm
       end>
     Properties.ListOptions.GridLines = glNone
     Properties.ListOptions.ShowHeader = False
+    Properties.ListSource = dataDm.dsObjectTypes
     TabOrder = 4
     Width = 145
   end

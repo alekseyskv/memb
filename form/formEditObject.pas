@@ -58,6 +58,7 @@ type
   public
     procedure LoadedRec; override;
     procedure SaveRec; override;
+    function checkInputData(): boolean; override;
   end;
 
 var
@@ -253,6 +254,16 @@ begin
     end;
   end; }
   LogDebug(ClassName, '[SaveRec] Finish');
+end;
+
+function TeditObjectForm.checkInputData(): boolean;
+begin
+  Inherited;
+  if (objectTypeCmb.Text = '') or (objectNameEdt.Text = '') then
+  begin
+    MBox('Обязательны для заполнения:' + #13 + '- Тип объекта' + #13 + '- Название', CoreErrorText, mtInformation);
+    Result:= false;
+  end;
 end;
 
 end.
