@@ -395,9 +395,15 @@ object dataDm: TdataDm
     SQL.Strings = (
       'SELECT guid, name'
       'FROM m_object'
+      'WHERE building_guid = :BGUID'
       'ORDER BY name')
     Left = 672
     Top = 8
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'BGUID'
+      end>
     object WideStringField4: TWideStringField
       FieldName = 'guid'
       Size = 36

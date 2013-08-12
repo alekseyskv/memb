@@ -1,10 +1,11 @@
 object objectsFrame: TobjectsFrame
   Left = 0
   Top = 0
-  Width = 451
+  Width = 663
   Height = 304
   Align = alClient
   TabOrder = 0
+  ExplicitWidth = 451
   object pnlList: TPanel
     Left = 0
     Top = 28
@@ -68,21 +69,23 @@ object objectsFrame: TobjectsFrame
   object pnlOwners: TPanel
     Left = 501
     Top = 28
-    Width = 502
+    Width = 162
     Height = 276
     Align = alClient
     BorderWidth = 2
     Caption = ' '
     TabOrder = 5
+    ExplicitWidth = 502
     object dbgData: TcxGrid
       Left = 3
       Top = 3
-      Width = 496
+      Width = 156
       Height = 270
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfStandard
       LookAndFeel.NativeStyle = True
+      ExplicitWidth = 496
       object dbgDataView: TcxGridDBTableView
         OnDblClick = PEvents
         DataController.DataSource = dataDm.dsObjectOwners

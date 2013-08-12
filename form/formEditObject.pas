@@ -10,7 +10,7 @@ uses
   cxFilter, cxData, cxDataStorage, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, dxmdaset, cxCalendar, cxCalc,
   ActnList, dxBar, cxDropDownEdit, Uni, cxDBEdit, cxLookupEdit, cxDBLookupEdit,
-  cxDBLookupComboBox, cxMemo, Vcl.Menus;
+  cxDBLookupComboBox, cxMemo, Vcl.Menus, DateUtils;
 
 type
   TeditObjectForm = class(TfrmCORRec)
@@ -48,7 +48,6 @@ type
     SquarePopupMenu: TPopupMenu;
     addShare: TMenuItem;
     delShare: TMenuItem;
-    procedure FormCreate(Sender: TObject);
     procedure qRecAfterInsert(DataSet: TDataSet);
     procedure qAreasAfterInsert(DataSet: TDataSet);
     procedure PEvents(Sender: TObject);
@@ -80,6 +79,7 @@ begin
   editObjectForm := TeditObjectForm.Create(nil);
   try
     editObjectForm.LoadObjects;
+    editObjectForm.LoadAreas;
     editObjectForm.qRec.Open;
     editObjectForm.qRec.Insert;
     if editObjectForm.ShowModal = mrOk then
@@ -137,13 +137,6 @@ end;
 
 { TfrmMEMObjectInfo }
 
-procedure TeditObjectForm.FormCreate(Sender: TObject);
-var
-  NField: TField;
-begin
-  inherited;
-end;
-
 procedure TeditObjectForm.LoadObjects;
 begin
   LogDebug(ClassName, '[LoadObjects] Start');
@@ -184,6 +177,7 @@ procedure TeditObjectForm.qAreasAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   DataSet.FieldByName('guid').AsString := TCommon.GenerateGuid;
+  DataSet.FieldByName('begin_date').AsDateTime := Today;
 end;
 
 procedure TeditObjectForm.qRecAfterInsert(DataSet: TDataSet);

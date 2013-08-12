@@ -91,6 +91,9 @@ begin
   LogDebug(ClassName, '[LoadData] Start');
   dataDm.qObjects.Close;
   dataDm.qObjects.Open;
+
+  dataDm.qObjectOwnres.Close;
+  dataDm.qObjectOwnres.Open;
   LogDebug(ClassName, '[LoadData] Finish');
 end;
 

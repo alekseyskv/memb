@@ -181,6 +181,10 @@ begin
         dataDm.qOwnerShare.Close;
         dataDm.qOwnerShare.ParamByName('BGUID').AsString := BuildingGUIDs[buildingCmb.ItemIndex];
         dataDm.qOwnerShare.Open;
+
+        dataDm.qObjectCmbList.Close;
+        dataDm.qObjectCmbList.ParamByName('BGUID').AsString := BuildingGUIDs[buildingCmb.ItemIndex];
+        dataDm.qObjectCmbList.Open;
         {
         SELECT w.guid, w.name
 FROM m_owner w
@@ -207,17 +211,19 @@ ORDER BY w.name
     end;
     if (Sender as TAction) = actVIWObjects
     then begin
+      // ‚ÍÎ‡‰Í‡ Œ¡⁄≈ “€
       objectsFrame.LoadData();
       pclMain.ActivePage := tshObjects;
     end;
     if (Sender as TAction) = actVIWOwners
     then begin
       // ‚ÍÎ‡‰Í‡ —Œ¡—“¬≈ÕÕ» »
-      //frameMEMOwners.LoadData('');
+      ownersFrame.LoadData();
       pclMain.ActivePage := tshOwners;
     end;
     if (Sender as TAction) = actVIWShares
     then begin
+      // ‚ÍÎ‡‰Í‡ ¬À¿ƒ≈Õ»≈ —Œ¡—“¬≈ÕÕŒ—“‹ﬁ
       shareFrame.LoadData();
       pclMain.ActivePage := tshShares;
     end;

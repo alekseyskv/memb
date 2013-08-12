@@ -92,6 +92,10 @@ begin
 
   dataDm.qOwners.Close;
   dataDm.qOwners.Open;
+
+  dataDm.qOwnerShare.Close;
+  dataDm.qOwnerShare.Open;
+
   LogDebug(ClassName, '[LoadData] Finish');
 end;
 

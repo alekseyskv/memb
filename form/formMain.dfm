@@ -25,7 +25,6 @@ object mainFrm: TmainFrm
     Align = alClient
     TabOrder = 4
     Properties.ActivePage = tshObjects
-    ExplicitWidth = 1186
     ClientRectBottom = 571
     ClientRectLeft = 2
     ClientRectRight = 1106
@@ -33,17 +32,22 @@ object mainFrm: TmainFrm
     object tshObjects: TcxTabSheet
       Caption = #1054#1073#1098#1077#1082#1090#1099
       ImageIndex = 0
-      ExplicitWidth = 1180
     end
     object tshOwners: TcxTabSheet
       Caption = #1057#1086#1073#1089#1090#1074#1077#1085#1085#1080#1082#1080
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 1180
+      ExplicitHeight = 0
     end
     object tshShares: TcxTabSheet
       Caption = #1042#1083#1072#1076#1077#1085#1080#1077' '#1089#1086#1073#1089#1090#1074#1077#1085#1085#1086#1089#1090#1100#1102
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 1180
+      ExplicitHeight = 0
     end
   end
   object sbrMain: TdxStatusBar
@@ -70,7 +74,6 @@ object mainFrm: TmainFrm
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    ExplicitWidth = 1186
   end
   object aclMain: TActionList
     Images = greyImgList
