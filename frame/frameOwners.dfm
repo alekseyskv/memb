@@ -1,7 +1,7 @@
 object ownersFrame: TownersFrame
   Left = 0
   Top = 0
-  Width = 940
+  Width = 941
   Height = 304
   Align = alClient
   TabOrder = 0
@@ -59,23 +59,23 @@ object ownersFrame: TownersFrame
   object pnlOwners: TPanel
     Left = 501
     Top = 28
-    Width = 439
+    Width = 440
     Height = 276
     Align = alClient
     BorderWidth = 2
     Caption = ' '
     TabOrder = 5
-    ExplicitWidth = 494
+    ExplicitWidth = 439
     object dbgData: TcxGrid
       Left = 3
       Top = 3
-      Width = 433
+      Width = 434
       Height = 270
       Align = alClient
       TabOrder = 0
       LookAndFeel.Kind = lfStandard
       LookAndFeel.NativeStyle = True
-      ExplicitWidth = 488
+      ExplicitWidth = 433
       object dbgDataView: TcxGridDBTableView
         OnDblClick = PEvents
         DataController.DataSource = dataDm.dsOwnerShare

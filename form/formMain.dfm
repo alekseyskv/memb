@@ -222,6 +222,11 @@ object mainFrm: TmainFrm
       FloatClientHeight = 0
       ItemLinks = <
         item
+          ViewLayout = ivlGlyphControlCaption
+          Visible = True
+          ItemName = 'mniDateCheck'
+        end
+        item
           Visible = True
           ItemName = 'mniDateOper'
         end
@@ -267,6 +272,19 @@ object mainFrm: TmainFrm
       Action = actCORAbout
       Category = 0
     end
+    object mniDateCheck: TcxBarEditItem
+      Caption = #1044#1072#1090#1072':'
+      Category = 0
+      Hint = #1044#1072#1090#1072
+      Visible = ivAlways
+      OnChange = PEvents
+      ShowCaption = True
+      Width = 0
+      PropertiesClassName = 'TcxCheckBoxProperties'
+      Properties.ImmediatePost = True
+      Properties.NullStyle = nssUnchecked
+      InternalEditValue = True
+    end
     object mniCORFile: TdxBarSubItem
       Caption = #1060#1072#1081#1083
       Category = 1
@@ -283,7 +301,7 @@ object mainFrm: TmainFrm
     end
     object buildingCmb: TdxBarCombo
       Align = iaClient
-      Caption = #1058#1077#1082#1091#1097#1080#1081' '#1076#1086#1084
+      Caption = #1058#1077#1082#1091#1097#1080#1081' '#1076#1086#1084':'
       Category = 1
       Hint = #1058#1077#1082#1091#1097#1080#1081' '#1076#1086#1084
       Visible = ivAlways
@@ -296,9 +314,9 @@ object mainFrm: TmainFrm
       ItemIndex = -1
     end
     object mniDateOper: TdxBarDateCombo
-      Caption = #1058#1077#1082#1091#1097#1072#1103' '#1076#1072#1090#1072
+      Caption = #1044#1072#1090#1072
       Category = 1
-      Hint = #1058#1077#1082#1091#1097#1072#1103' '#1076#1072#1090#1072
+      Hint = #1044#1072#1090#1072
       Visible = ivAlways
       OnChange = PEvents
       Glyph.Data = {
@@ -310,7 +328,6 @@ object mainFrm: TmainFrm
         FF0D0F000FFF11FFFF0D0FFF0FFF11FFFF0D0FF10FFFF11FFF0D0FF10FFFFF11
         FF0D0FF10FF11111FF0D0FF10FFFFFFFFF0D0FF104444444440D0FFF04444444
         440D044400000000000D04444444440DDDDD00000000000DDDDD}
-      ShowCaption = True
       Width = 120
       ShowEditor = False
     end

@@ -78,6 +78,7 @@ type
     { Private declarations }
   public
     function loadData : boolean;
+    procedure prepareQuery(d: TDate = 0);
   end;
 
 var
@@ -85,9 +86,71 @@ var
 
 implementation
 
-uses dmCon, corDialoglib;
+uses dmCon, corDialogLib, corLogicLib;
 
 {$R *.dfm}
+
+procedure TdataDm.prepareQuery(d: TDate = 0);
+var
+  ObjFltr: string;
+  OwnerShareFltr: string;
+  ShareFltr: string;
+begin
+  ObjFltr := '';
+  OwnerShareFltr := '';
+  ShareFltr := '';
+
+  if d <> 0 then
+  begin
+    ObjFltr := ' AND o.start_date <= :CURDATE AND o.finish_date >= :CURDATE ';
+    OwnerShareFltr := ' AND s.start_date <= :CURDATE AND s.finish_date >= :CURDATE ';
+    ShareFltr := ' AND s.start_date <= :CURDATE AND s.finish_date >= :CURDATE ';
+  end;
+
+  qObjects.Close;
+  qOwnerShare.Close;
+  qShare.Close;
+
+  qObjects.SQL.Text := 'SELECT o.guid, o.name, o.start_date, o.finish_date, CAST(IFNULL(a.area, 0) AS TEXT) AS area ' +
+    'FROM m_object o ' +
+    'LEFT JOIN (SELECT object_guid, area, MAX(begin_date) FROM m_area GROUP BY object_guid) a ON a.object_guid = o.guid ' +
+    'WHERE o.building_guid = :BGUID ' + ObjFltr +
+    'ORDER BY o.name ';
+
+  qOwnerShare.SQL.Text := 'SELECT s.guid, ' +
+    's.object_guid AS obj_guid, ' +
+    's.owner_guid, ' +
+    's.start_date, ' +
+    's.finish_date, ' +
+    's.share, ' +
+    'CAST(s.share * a.area / 100 AS TEXT) AS share_area ' +
+    'FROM m_share s ' +
+    'LEFT JOIN m_object o ON o.guid = s.object_guid ' +
+    'LEFT JOIN (SELECT object_guid, area, MAX(begin_date) FROM m_area GROUP BY object_guid) a ON a.object_guid = s.object_guid ' +
+    'WHERE o.building_guid = :BGUID ' + OwnerShareFltr;
+
+  qShare.SQL.Text := 'SELECT s.guid, s.object_guid, s.owner_guid, s.start_date, s.finish_date, s.share, a.area, CAST(s.share * a.area / 100 AS TEXT) AS share_area ' +
+    'FROM m_share s ' +
+    'INNER JOIN m_object o ON o.guid = s.object_guid ' +
+    'LEFT JOIN (SELECT object_guid, area, MAX(begin_date) FROM m_area GROUP BY object_guid) a ON a.object_guid = s.object_guid '+
+    'WHERE o.building_guid = :BGUID ' + ShareFltr;
+
+  qObjects.ParamByName('BGUID').AsString := Logic.HouseGUID;
+  qOwnerShare.ParamByName('BGUID').AsString := Logic.HouseGUID;
+  qShare.ParamByName('BGUID').AsString := Logic.HouseGUID;
+
+  if d <> 0 then
+  begin
+    qObjects.ParamByName('CURDATE').AsDate := d;
+    qOwnerShare.ParamByName('CURDATE').AsDate := d;
+    qShare.ParamByName('CURDATE').AsDate := d;
+  end;
+
+  qObjects.Open;
+  qOwnerShare.Open;
+  qShare.Open;
+
+end;
 
 function TdataDm.loadData: boolean;
 begin

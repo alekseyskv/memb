@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ActnList, dxBar, cxClasses, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, dxStatusBar, cxPC, DB, MemDS, DBAccess, dxBarExtItems,
-  cxPCdxBarPopupMenu, Uni, Vcl.ImgList, cxLocalization, cxImage, cxBarEditItem;
+  cxPCdxBarPopupMenu, Uni, Vcl.ImgList, cxLocalization, cxImage, cxBarEditItem,
+  cxCheckBox;
 
 type
   TGUIDs = array of String;
@@ -47,6 +48,7 @@ type
     dxBarSubItem1: TdxBarSubItem;
     mniCORAbout: TdxBarButton;
     actCORAbout: TAction;
+    mniDateCheck: TcxBarEditItem;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure PEvents(Sender: TObject);
@@ -159,13 +161,32 @@ end;
 
 procedure TmainFrm.PEvents(Sender: TObject);
 begin
+  if (Sender is TcxBarEditItem)
+  then begin
+    // Фильтр по дате
+    if (Sender as TcxBarEditItem) = mniDateCheck
+    then begin
+      mniDateOper.Enabled := mniDateCheck.EditValue;
+      if mniDateCheck.EditValue = true
+      then dataDm.prepareQuery(Logic.DateOper)
+      else dataDm.prepareQuery();
+
+    end;
+  end;
+
   if (Sender is TdxBarDateCombo)
   then begin
+    // Смена даты
     if (Sender as TdxBarDateCombo) = mniDateOper
-    then Logic.DateOper := mniDateOper.Date;
+    then begin
+      Logic.DateOper := mniDateOper.Date;
+      dataDm.prepareQuery(Logic.DateOper);
+    end;
   end;
+
   if (Sender is TdxBarCombo)
   then begin
+    // Смена дома
     if (Sender as TdxBarCombo) = buildingCmb
     then begin
       if (0 <= buildingCmb.ItemIndex) and (buildingCmb.ItemIndex < Length(BuildingGUIDs))
@@ -175,15 +196,15 @@ begin
         sbrMain.Panels.Items[0].Text := 'Объект: ' + buildingCmb.Text;
 
         dataDm.qObjects.Close;
-        dataDm.qObjects.ParamByName('BGUID').AsString := BuildingGUIDs[buildingCmb.ItemIndex];
+        dataDm.qObjects.ParamByName('BGUID').AsString := Logic.HouseGUID;
         dataDm.qObjects.Open;
 
         dataDm.qOwnerShare.Close;
-        dataDm.qOwnerShare.ParamByName('BGUID').AsString := BuildingGUIDs[buildingCmb.ItemIndex];
+        dataDm.qOwnerShare.ParamByName('BGUID').AsString := Logic.HouseGUID;
         dataDm.qOwnerShare.Open;
 
         dataDm.qObjectCmbList.Close;
-        dataDm.qObjectCmbList.ParamByName('BGUID').AsString := BuildingGUIDs[buildingCmb.ItemIndex];
+        dataDm.qObjectCmbList.ParamByName('BGUID').AsString := Logic.HouseGUID;
         dataDm.qObjectCmbList.Open;
         {
         SELECT w.guid, w.name
